@@ -8,10 +8,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - work-demo.buddylgreen.com
+    - demo-work.buddylgreen.com
     secretName: web-app-tls
   rules:
-  - host: work-demo.buddylgreen.com
+  - host: demo-work.buddylgreen.com
     http:
       paths:
       - path: /
