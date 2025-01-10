@@ -1,11 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-app
+  name: webapp
 spec:
+  selector:
+    app: webapp
   ports:
   - port: 80
-    targetPort: 8080
-    protocol: TCP
-  selector:
-    app: web-app
+    targetPort: 80

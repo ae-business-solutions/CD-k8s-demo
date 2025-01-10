@@ -1,19 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-app
+  name: webapp
   labels:
-    app: web-app
+    app: webapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web-app
+      app: webapp
   template:
     metadata:
       labels:
-        app: web-app
+        app: webapp
     spec:
       containers:
       - name: nginx-container
         image: nginx:latest
+        resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 1m
+              memory: 10Mi
