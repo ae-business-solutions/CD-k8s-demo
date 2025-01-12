@@ -1,0 +1,39 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-staging
+  namespace: default
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: alexander.t.holt@gmail.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: issuer-key
+    solvers:
+    - dns01:
+        cloudflare:
+          apiTokenSecretRef:
+            name: cloudflare-api-token-secret
+            key: api-token
+---
+# issuer.yml
+# apiVersion: cert-manager.io/v1
+# kind: Issuer
+# metadata:
+#   name: ca-issuer
+# spec:
+#   acme:
+#     email: <YOUR EMAIL>
+#     server: https://acme-v02.api.letsencrypt.org/directory
+#     privateKeySecretRef:
+#       name: issuer-key
+#     solvers:
+#     - dns01:
+#         cloudflare:
+#           email: <YOUR EMAIL>
+#           apiTokenSecretRef:
+#             name: cloudflare-api-key-secret
+#             key: api-key

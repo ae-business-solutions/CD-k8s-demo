@@ -40,18 +40,18 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ingress
+  name: certmanager
   namespace: argocd
 spec:
   project: tools
   source:
     repoURL: https://github.com/ae-business-solutions/CD-k8s-demo
     targetRevision: HEAD
-    path: cluster/ingress
+    path: cluster/cert-manager
 
   destination: 
     server: https://kubernetes.default.svc
-    namespace: ingress
+    namespace: cert-manager
 
   syncPolicy:
     syncOptions:
@@ -61,26 +61,26 @@ spec:
       selfHeal: true
       prune: true
 ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: certmanager
-#   namespace: argocd
-# spec:
-#   project: tools
-#   source:
-#     repoURL: https://github.com/ae-business-solutions/CD-k8s-demo
-#     targetRevision: HEAD
-#     path: cluster/cert-manager
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: certmanager
+  namespace: argocd
+spec:
+  project: tools
+  source:
+    repoURL: https://github.com/ae-business-solutions/CD-k8s-demo
+    targetRevision: HEAD
+    path: cluster/tunnel
 
-#   destination: 
-#     server: https://kubernetes.default.svc
-#     namespace: cert-manager
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
 
-#   syncPolicy:
-#     syncOptions:
-#     - CreateNamespace=true
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
 
-#     automated:
-#       selfHeal: true
-#       prune: true
+    automated:
+      selfHeal: true
+      prune: true
